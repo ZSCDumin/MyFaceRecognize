@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyFaceRecognize</string>
+    <!-- 请替换成在语音云官网申请的appid -->
+    <string name="app_id">5a40a4b6</string>
+</resources>
