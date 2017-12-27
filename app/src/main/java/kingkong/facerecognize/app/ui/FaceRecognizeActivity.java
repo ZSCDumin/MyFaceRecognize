@@ -171,9 +171,9 @@ public class FaceRecognizeActivity extends AppCompatActivity{
                 String decision = object.getString("decision");
 
                 if ("accepted".equalsIgnoreCase(decision)) {
-                    Toast.makeText(FaceRecognizeActivity.this,"通过验证" ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FaceRecognizeActivity.this,"验证通过" ,Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(FaceRecognizeActivity.this,"验证失败" ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FaceRecognizeActivity.this,"验证未通过" ,Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

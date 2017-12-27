@@ -16,6 +16,7 @@ import com.wonderkiln.camerakit.CameraKitVideo;
 import com.wonderkiln.camerakit.CameraView;
 
 import kingkong.facerecognize.app.ui.FaceRecognizeActivity;
+import kingkong.facerecognize.app.ui.VoiceprintRecognizeActivity;
 
 /**
  * Created by KingKong-HE on 2017/12/26.
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, FaceRecognizeActivity.class));
+                finish();
+            }
+        });
+
+        findViewById(R.id.btu02).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, VoiceprintRecognizeActivity.class));
                 finish();
             }
         });

@@ -39,7 +39,6 @@
             android:layout_marginRight="10dp"
             android:padding="8dp"
             android:singleLine="true"
-            android:text="注册"
             android:textColor="@android:color/white"
             android:textSize="15dp"/>
 
@@ -59,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        android:text="开始读数字"
+        android:text="点击验证"
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:gravity="center"

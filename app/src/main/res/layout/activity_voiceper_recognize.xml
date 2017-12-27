@@ -14,6 +14,7 @@
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:layout_collapseMode="pin"
+        app:navigationIcon="@mipmap/ic_launcher"
         app:layout_scrollFlags="scroll|enterAlways">
 
         <TextView
@@ -24,7 +25,7 @@
             android:layout_gravity="center"
             android:ellipsize="end"
             android:lines="1"
-            android:text="人脸验证"
+            android:text="声纹验证"
             android:scrollHorizontally="true"
             android:textColor="@android:color/white"
             android:textSize="16dp"/>
@@ -38,6 +39,7 @@
             android:layout_marginRight="10dp"
             android:padding="8dp"
             android:singleLine="true"
+            android:text="获取密码"
             android:textColor="@android:color/white"
             android:textSize="15dp"/>
 
@@ -45,11 +47,20 @@
 
 
     <TextView
-        android:id="@+id/btu01"
+        android:id="@+id/textPasswordID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:text="123567"/>
+
+    <Button
+        android:id="@+id/btuCommit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        android:text="人脸注册"
+        android:text="开始读数字"
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:gravity="center"
@@ -57,19 +68,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="#FF5500"/>
-
-    <TextView
-        android:id="@+id/btu02"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="声纹注册"
-        android:textColor="@android:color/white"
-        android:textSize="15dp"
-        android:gravity="center"
-        android:layout_gravity="center_vertical|left"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="#F05100"/>
 
 </LinearLayout>
