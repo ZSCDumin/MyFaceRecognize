@@ -27,6 +27,8 @@
     <!--如需使用人脸识别，还要添加：摄相头权限，拍照需要用到 -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -46,6 +48,6 @@
 
         <activity android:name=".ui.FaceRecognizeActivity"/>
         <activity android:name=".ui.VoiceprintRecognizeActivity"/>
-
+        <activity android:name=".ui.VocalVerifyDemo1"/>
     </application>
 </manifest>

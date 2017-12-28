@@ -1,21 +1,13 @@
 package kingkong.facerecognize.app;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
-import com.wonderkiln.camerakit.CameraKitError;
-import com.wonderkiln.camerakit.CameraKitEvent;
-import com.wonderkiln.camerakit.CameraKitEventListener;
-import com.wonderkiln.camerakit.CameraKitImage;
-import com.wonderkiln.camerakit.CameraKitVideo;
-import com.wonderkiln.camerakit.CameraView;
-
 import kingkong.facerecognize.app.ui.FaceRecognizeActivity;
+import kingkong.facerecognize.app.ui.VocalVerifyDemo1;
 import kingkong.facerecognize.app.ui.VoiceprintRecognizeActivity;
 
 /**
@@ -37,18 +29,16 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, FaceRecognizeActivity.class));
-                finish();
             }
         });
 
         findViewById(R.id.btu02).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, VocalVerifyDemo1.class));
                 startActivity(new Intent(MainActivity.this, VoiceprintRecognizeActivity.class));
-                finish();
             }
         });
 
     }
-
 }
