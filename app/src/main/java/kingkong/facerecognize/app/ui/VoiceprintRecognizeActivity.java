@@ -77,7 +77,7 @@ public class VoiceprintRecognizeActivity extends Activity implements View.OnTouc
         @Override
         public void onResult(IdentityResult result, boolean b) {
             mProDialog.dismiss();
-            btuCommit.setClickable(true);
+//            btuCommit.setClickable(true);
 
             String json = result.getResultString();
 
@@ -319,6 +319,13 @@ public class VoiceprintRecognizeActivity extends Activity implements View.OnTouc
      * 注册
      */
     private void vocalEnroll() {
+
+        if(mNumPwdSegs == null || mNumPwdSegs.length <= 0){
+            showTip("请先获取声纹密码");
+            isStartWork = false;
+            return;
+        }
+
         StringBuffer strBuffer = new StringBuffer();
         strBuffer.append("请长按“按住说话”按钮！\n");
         strBuffer.append("请读出：" + mNumPwdSegs[0] + "\n");
@@ -344,7 +351,7 @@ public class VoiceprintRecognizeActivity extends Activity implements View.OnTouc
 
         mNumPwd = null;
         // 下载密码时，按住说话触摸无效
-        btuCommit.setClickable(false);
+//        btuCommit.setClickable(false);
 
         mProDialog.setMessage("下载中...");
         mProDialog.show();

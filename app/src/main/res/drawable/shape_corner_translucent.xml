@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#80000000" />
+    <corners
+        android:bottomLeftRadius="0dp"
+        android:bottomRightRadius="0dp"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp" />
+    <stroke
+        android:width="0dp"
+        android:color="#80000000" />
+</shape>
+    <!--全透明：#00000000-->
+    <!--半透明：#80000000-->
+    <!--不透明：#FF000000-->
+
+    <!--白色半透明：#80FFFFFF-->
+    <!--红色30%透明：#4Dca0d0d-->
+
+    <!--不透明	100%	FF-->
+    <!--95%	F2-->
+    <!--90%	E6-->
+    <!--85%	D9-->
+    <!--80%	CC-->
+    <!--75%	BF-->
+    <!--70%	B3-->
+    <!--65%	A6-->
+    <!--60%	99-->
+    <!--55%	8C-->
+    <!--半透明	50%	80-->
+    <!--45%	73-->
+    <!--40%	66-->
+    <!--35%	59-->
+    <!--30%	4D-->
+    <!--25%	40-->
+    <!--20%	33-->
+    <!--15%	26-->
+    <!--10%	1A-->
+    <!--5%	0D-->
+    <!--全透明	0%	00-->

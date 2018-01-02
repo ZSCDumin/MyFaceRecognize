@@ -48,6 +48,6 @@
 
         <activity android:name=".ui.FaceRecognizeActivity"/>
         <activity android:name=".ui.VoiceprintRecognizeActivity"/>
-        <activity android:name=".ui.VocalVerifyDemo1"/>
+        <activity android:name=".ui.DemoActivity"/>
     </application>
 </manifest>

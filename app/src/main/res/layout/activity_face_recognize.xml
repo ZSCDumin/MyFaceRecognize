@@ -14,7 +14,7 @@
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:layout_collapseMode="pin"
-        app:navigationIcon="@mipmap/ic_launcher"
+        app:navigationIcon="@drawable/back_ic"
         app:layout_scrollFlags="scroll|enterAlways">
 
         <TextView

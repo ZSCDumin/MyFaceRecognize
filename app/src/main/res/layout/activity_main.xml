@@ -72,4 +72,19 @@
         android:layout_centerHorizontal="true"
         android:background="#F05100"/>
 
+    <TextView
+        android:id="@+id/btu03"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="验证"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_gravity="center_vertical|left"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#F05100"/>
+
+
 </LinearLayout>

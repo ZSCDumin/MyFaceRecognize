@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import kingkong.facerecognize.app.ui.DemoActivity;
 import kingkong.facerecognize.app.ui.FaceRecognizeActivity;
-import kingkong.facerecognize.app.ui.VocalVerifyDemo1;
 import kingkong.facerecognize.app.ui.VoiceprintRecognizeActivity;
 
 /**
@@ -35,8 +35,14 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.btu02).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(MainActivity.this, VocalVerifyDemo1.class));
                 startActivity(new Intent(MainActivity.this, VoiceprintRecognizeActivity.class));
+            }
+        });
+
+        findViewById(R.id.btu03).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DemoActivity.class));
             }
         });
 
