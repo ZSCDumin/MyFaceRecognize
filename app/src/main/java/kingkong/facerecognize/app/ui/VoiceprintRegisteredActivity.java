@@ -4,13 +4,12 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,17 +33,21 @@ import kingkong.facerecognize.app.entity.VoiceprintPasswordInfo;
 
 /**
  * Created by KingKong-HE on 2017/12/26.
- * 人脸验证界面
+ * 声纹注册验证界面
  * @author KingKong-HE
  * @Time 2017/12/26
  * @Email 709872217@QQ.COM
  */
-public class VoiceprintRecognizeActivity extends Activity implements View.OnTouchListener{
+public class VoiceprintRegisteredActivity extends Activity implements View.OnTouchListener{
 
     private Button btuCommit;
     private TextView toolbar_subtitle,textPasswordID;
 
     private Toast mToast;
+
+    private Toolbar toolbarID;
+
+    private String login_name;
 
     // 进度对话框
     private ProgressDialog mProDialog;
@@ -164,6 +167,8 @@ public class VoiceprintRecognizeActivity extends Activity implements View.OnTouc
 
                     if (suc == rgn) {
                         textPasswordID.setText("注册成功");
+                        setResult(21);
+                        finish();
 
                         mCanStartRecord = false;
                         isStartWork = false;
@@ -215,14 +220,16 @@ public class VoiceprintRecognizeActivity extends Activity implements View.OnTouc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_voiceper_recognize);
 
+        login_name = getIntent().getStringExtra("login_name");
+
+        toolbarID = findViewById(R.id.toolbar);
         toolbar_subtitle = (TextView) findViewById(R.id.toolbar_subtitle);
         textPasswordID = (TextView) findViewById(R.id.textPasswordID);
         btuCommit = findViewById(R.id.btuCommit);
 
-        mToast = Toast.makeText(VoiceprintRecognizeActivity.this, "", Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(VoiceprintRegisteredActivity.this, "", Toast.LENGTH_SHORT);
         mToast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 50);
 
         mProDialog = new ProgressDialog(this);
@@ -230,7 +237,6 @@ public class VoiceprintRecognizeActivity extends Activity implements View.OnTouc
         mProDialog.setTitle("请稍后");
 
         mProDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-
             @Override
             public void onCancel(DialogInterface dialog) {
                 // cancel进度框时,取消正在进行的操作
@@ -240,6 +246,12 @@ public class VoiceprintRecognizeActivity extends Activity implements View.OnTouc
             }
         });
 
+        toolbarID.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         toolbar_subtitle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,7 +265,7 @@ public class VoiceprintRecognizeActivity extends Activity implements View.OnTouc
             }
         });
 
-        mIdVerifier = IdentityVerifier.createVerifier(VoiceprintRecognizeActivity.this, new InitListener() {
+        mIdVerifier = IdentityVerifier.createVerifier(VoiceprintRegisteredActivity.this, new InitListener() {
             @Override
             public void onInit(int errorCode) {
                 if (ErrorCode.SUCCESS == errorCode) {
@@ -269,26 +281,17 @@ public class VoiceprintRecognizeActivity extends Activity implements View.OnTouc
     }
 
 
-//    private void cancelOperation() {
-//        isStartWork = false;
-//        mIdVerifier.cancel();
-//
-//        if (null != mPcmRecorder) {
-//            mPcmRecorder.stopRecord(true);
-//        }
-//    }
-
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (!isStartWork) {
-                    // 根据业务类型调用服务
-
-                    vocalEnroll();
 
                     isStartWork = true;
                     mCanStartRecord = true;
+
+                    // 根据业务类型调用服务
+                    vocalEnroll();
                 }
                 if (mCanStartRecord) {
                     try {
@@ -340,7 +343,7 @@ public class VoiceprintRecognizeActivity extends Activity implements View.OnTouc
         // 设置会话类型
         mIdVerifier.setParameter(SpeechConstant.MFV_SST, "enroll");
         // 用户id
-        mIdVerifier.setParameter(SpeechConstant.AUTH_ID, "king123");
+        mIdVerifier.setParameter(SpeechConstant.AUTH_ID, login_name);
         // 设置监听器，开始会话
         mIdVerifier.startWorking(mEnrollListener);
     }

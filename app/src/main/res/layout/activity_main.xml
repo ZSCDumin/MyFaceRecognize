@@ -24,7 +24,7 @@
             android:layout_gravity="center"
             android:ellipsize="end"
             android:lines="1"
-            android:text="人脸验证"
+            android:text="欢迎页面"
             android:scrollHorizontally="true"
             android:textColor="@android:color/white"
             android:textSize="16dp"/>
@@ -44,47 +44,6 @@
     </android.support.v7.widget.Toolbar>
 
 
-    <TextView
-        android:id="@+id/btu01"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="人脸注册"
-        android:textColor="@android:color/white"
-        android:textSize="15dp"
-        android:gravity="center"
-        android:layout_gravity="center_vertical|left"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="#FF5500"/>
-
-    <TextView
-        android:id="@+id/btu02"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="声纹注册"
-        android:textColor="@android:color/white"
-        android:textSize="15dp"
-        android:gravity="center"
-        android:layout_gravity="center_vertical|left"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="#F05100"/>
-
-    <TextView
-        android:id="@+id/btu03"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="验证"
-        android:textColor="@android:color/white"
-        android:textSize="15dp"
-        android:gravity="center"
-        android:layout_gravity="center_vertical|left"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="#F05100"/>
 
 
 </LinearLayout>

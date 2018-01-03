@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -39,11 +40,13 @@ import kingkong.facerecognize.app.R;
  * @Time 2017/12/26
  * @Email 709872217@QQ.COM
  */
-public class FaceRecognizeActivity extends AppCompatActivity{
+public class FaceRegisteredActivity extends AppCompatActivity{
 
     private CameraView cameraViewID;
 
     private TextView btuCommit;
+
+    private Toolbar toolbarID;
 
     // 进度对话框
     private ProgressDialog mProDialog;
@@ -51,12 +54,17 @@ public class FaceRecognizeActivity extends AppCompatActivity{
     //采用身份识别接口进行在线人脸识别
     private IdentityVerifier mIdVerifier;
 
+    private String login_name;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_face_recognize);
 
+        login_name = getIntent().getStringExtra("login_name");
+
         cameraViewID = (CameraView)findViewById(R.id.cameraViewID);
+        toolbarID = findViewById(R.id.toolbar);
         btuCommit = findViewById(R.id.btuCommit);
 
         mProDialog = new ProgressDialog(this);
@@ -74,13 +82,20 @@ public class FaceRecognizeActivity extends AppCompatActivity{
             }
         });
 
-        mIdVerifier = IdentityVerifier.createVerifier(FaceRecognizeActivity.this, new InitListener() {
+        toolbarID.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        mIdVerifier = IdentityVerifier.createVerifier(FaceRegisteredActivity.this, new InitListener() {
             @Override
             public void onInit(int errorCode) {
                 if (ErrorCode.SUCCESS == errorCode) {
-                    Toast.makeText(FaceRecognizeActivity.this,"引擎初始化成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FaceRegisteredActivity.this,"引擎初始化成功",Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(FaceRecognizeActivity.this,"引擎初始化失败，错误码：" + errorCode,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FaceRegisteredActivity.this,"引擎初始化失败，错误码：" + errorCode,Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -122,24 +137,24 @@ public class FaceRecognizeActivity extends AppCompatActivity{
 
     }
 
-    //获取验证信息
+    //设置注册信息
     public void getVerification(byte[] mImageData){
         if (null != mImageData && mImageData.length > 0) {
-            mProDialog.setMessage("验证中...");
+            mProDialog.setMessage("注册中...");
             mProDialog.show();
-            // 设置人脸验证参数
+            // 设置用户标识，格式为6-18个字符（由字母、数字、下划线组成，不得以数字开头，不能包含空格）。
+            // 当不设置时，云端将使用用户设备的设备ID来标识终端用户。
+            // 设置人脸注册参数
             // 清空参数
             mIdVerifier.setParameter(SpeechConstant.PARAMS, null);
             // 设置会话场景
             mIdVerifier.setParameter(SpeechConstant.MFV_SCENES, "ifr");
             // 设置会话类型
-            mIdVerifier.setParameter(SpeechConstant.MFV_SST, "verify");
-            // 设置验证模式，单一验证模式：sin
-            mIdVerifier.setParameter(SpeechConstant.MFV_VCM, "sin");
-            // 用户id
-            mIdVerifier.setParameter(SpeechConstant.AUTH_ID, "king123456");
+            mIdVerifier.setParameter(SpeechConstant.MFV_SST, "enroll");
+            // 设置用户id
+            mIdVerifier.setParameter(SpeechConstant.AUTH_ID, login_name);
             // 设置监听器，开始会话
-            mIdVerifier.startWorking(mVerifyListener);
+            mIdVerifier.startWorking(mEnrollListener);
 
             // 子业务执行参数，若无可以传空字符传
             StringBuffer params = new StringBuffer();
@@ -148,14 +163,14 @@ public class FaceRecognizeActivity extends AppCompatActivity{
             // 停止写入
             mIdVerifier.stopWrite("ifr");
         } else {
-            Toast.makeText(FaceRecognizeActivity.this,"请选择图片后再验证" ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(FaceRegisteredActivity.this,"请选择图片后再验证" ,Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
-     * 人脸验证监听器
+     * 人脸注册监听器
      */
-    private IdentityListener mVerifyListener = new IdentityListener() {
+    private IdentityListener mEnrollListener = new IdentityListener() {
 
         @Override
         public void onResult(IdentityResult result, boolean islast) {
@@ -167,13 +182,15 @@ public class FaceRecognizeActivity extends AppCompatActivity{
 
             try {
                 JSONObject object = new JSONObject(result.getResultString());
-                Log.d("king---","object is: "+object.toString());
-                String decision = object.getString("decision");
+                int ret = object.getInt("ret");
 
-                if ("accepted".equalsIgnoreCase(decision)) {
-                    Toast.makeText(FaceRecognizeActivity.this,"验证通过" ,Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(FaceRecognizeActivity.this,"验证未通过" ,Toast.LENGTH_SHORT).show();
+                if (ErrorCode.SUCCESS == ret) {
+                    setResult(21);
+                    finish();
+                    Toast.makeText(FaceRegisteredActivity.this,"注册成功" ,Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(FaceRegisteredActivity.this,"注册失败:"
+                            + new SpeechError(ret).getPlainDescription(true) ,Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -190,7 +207,7 @@ public class FaceRecognizeActivity extends AppCompatActivity{
                 mProDialog.dismiss();
             }
 
-            Toast.makeText(FaceRecognizeActivity.this,error.getPlainDescription(true) ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(FaceRegisteredActivity.this,error.getPlainDescription(true) ,Toast.LENGTH_SHORT).show();
         }
 
     };

@@ -2,6 +2,7 @@ package kingkong.facerecognize.app.ui;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,6 +37,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 
+import kingkong.facerecognize.app.HomeActivity;
 import kingkong.facerecognize.app.R;
 
 /**
@@ -45,7 +47,7 @@ import kingkong.facerecognize.app.R;
  * @Time 2018/1/2
  * @Email 709872217@QQ.COM
  */
-public class DemoActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity{
 
     private CameraView cameraViewID;
 
@@ -119,14 +121,14 @@ public class DemoActivity extends AppCompatActivity{
             }
         });
 
-        mIdVerifier = IdentityVerifier.createVerifier(DemoActivity.this, new InitListener() {
+        mIdVerifier = IdentityVerifier.createVerifier(LoginActivity.this, new InitListener() {
 
             @Override
             public void onInit(int errorCode) {
                 if (ErrorCode.SUCCESS == errorCode) {
-                    Toast.makeText(DemoActivity.this,"引擎初始化成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"引擎初始化成功",Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(DemoActivity.this,"引擎初始化失败，错误码：" + errorCode,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"引擎初始化失败，错误码：" + errorCode,Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -290,9 +292,9 @@ public class DemoActivity extends AppCompatActivity{
                 volumeTextID.setText("音量："+arg1);
             }
 //            if (SpeechEvent.EVENT_VOLUME == eventType) {
-//                Toast.makeText(DemoActivity.this,"音量：" + arg1,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LoginActivity.this,"音量：" + arg1,Toast.LENGTH_SHORT).show();
 //            } else if (SpeechEvent.EVENT_VAD_EOS == eventType) {
-//                Toast.makeText(DemoActivity.this,"录音结束",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LoginActivity.this,"录音结束",Toast.LENGTH_SHORT).show();
 //            }
         }
 
@@ -330,7 +332,8 @@ public class DemoActivity extends AppCompatActivity{
                 String decision = object.getString("decision");
 
                 if ("accepted".equalsIgnoreCase(decision)) {
-                    Toast.makeText(DemoActivity.this,"验证通过" ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"验证通过" ,Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this,HomeActivity.class));
                     finish();
                 } else {
                     StringBuffer errorResult = new StringBuffer();
@@ -361,7 +364,7 @@ public class DemoActivity extends AppCompatActivity{
 
     };
 
-    //获取验证信息
+    //获取人脸验证信息
     public void getVerification(byte[] mImageData){
         if (null != mImageData && mImageData.length > 0) {
             mProDialog.setMessage("验证中...");
@@ -376,7 +379,7 @@ public class DemoActivity extends AppCompatActivity{
             // 设置验证模式，单一验证模式：sin
             mIdVerifier.setParameter(SpeechConstant.MFV_VCM, "sin");
             // 用户id
-            mIdVerifier.setParameter(SpeechConstant.AUTH_ID, "king123456");
+            mIdVerifier.setParameter(SpeechConstant.AUTH_ID, "king123");
             // 设置监听器，开始会话
             mIdVerifier.startWorking(faceVerifyListener);
 
@@ -387,7 +390,7 @@ public class DemoActivity extends AppCompatActivity{
             // 停止写入
             mIdVerifier.stopWrite("ifr");
         } else {
-            Toast.makeText(DemoActivity.this,"请选择图片后再验证" ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this,"请选择图片后再验证" ,Toast.LENGTH_SHORT).show();
         }
     }
 
