@@ -14,9 +14,9 @@
 目前在人脸识别中，最重要的问题，可能是图片的可复制重复使用的问题。MSC  SDK（即讯飞SDK）在人脸识别时,并不是直接使用摄像头等硬件，只要应用传入二进制的图片数据即可。所以在验证时传入图片也能通过验证。在我们项目中对此安全问题提供了解决方案，强制用户必须使用摄像头，同时用户也必须做声纹验证，这样可以提供更高的安全性。
 
 【效果图】<br/>
-![查询界面](https://github.com/hjgang/MyFaceRecognize/blob/master/images/device-2018-01-04-131145.png)
-![注册人脸模型](https://github.com/hjgang/MyFaceRecognize/blob/master/images/device-2018-01-04-131906.png)
-![识别认证](https://github.com/hjgang/MyFaceRecognize/blob/master/images/device-2018-01-04-131057.png)
+![查询界面](https://github.com/hjgang/MyFaceRecognize/blob/master/images/device-2018-01-04-131145.png =100)
+![注册人脸模型](https://github.com/hjgang/MyFaceRecognize/blob/master/images/device-2018-01-04-131906.png =100)
+![识别认证](https://github.com/hjgang/MyFaceRecognize/blob/master/images/device-2018-01-04-131057.png =100)
 
 # License
 
