@@ -51,7 +51,9 @@ public class LoginActivity extends AppCompatActivity{
 
     private CameraView cameraViewID;
 
-    private TextView btuCommit,resultTextID,volumeTextID;
+    private TextView resultTextID,volumeTextID;
+
+    private TextView btuCommit;
 
     private RelativeLayout waterRippleID;
 
@@ -79,11 +81,15 @@ public class LoginActivity extends AppCompatActivity{
     // 进度对话框
     private ProgressDialog mProDialog;
 
+    private String login_name;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo);
+        setContentView(R.layout.activity_login);
+
+        login_name = getIntent().getStringExtra("login_name");
 
         btuCommit = findViewById(R.id.btuCommit);
 
@@ -225,7 +231,7 @@ public class LoginActivity extends AppCompatActivity{
         // 验证模式，单一验证模式：sin
         mIdVerifier.setParameter(SpeechConstant.MFV_VCM, "sin");
         // 用户的唯一标识，在声纹业务获取注册、验证、查询和删除模型时都要填写，不能为空
-        mIdVerifier.setParameter(SpeechConstant.AUTH_ID, "king123");
+        mIdVerifier.setParameter(SpeechConstant.AUTH_ID, login_name);
         // 设置监听器，开始会话
         mIdVerifier.startWorking(verifyListener);
     }
@@ -379,7 +385,7 @@ public class LoginActivity extends AppCompatActivity{
             // 设置验证模式，单一验证模式：sin
             mIdVerifier.setParameter(SpeechConstant.MFV_VCM, "sin");
             // 用户id
-            mIdVerifier.setParameter(SpeechConstant.AUTH_ID, "king123");
+            mIdVerifier.setParameter(SpeechConstant.AUTH_ID, login_name);
             // 设置监听器，开始会话
             mIdVerifier.startWorking(faceVerifyListener);
 

@@ -14,7 +14,6 @@
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:layout_collapseMode="pin"
-        app:navigationIcon="@drawable/back_ic"
         app:layout_scrollFlags="scroll|enterAlways">
 
         <TextView
@@ -25,7 +24,7 @@
             android:layout_gravity="center"
             android:ellipsize="end"
             android:lines="1"
-            android:text="注册声纹模型"
+            android:text="首页"
             android:scrollHorizontally="true"
             android:textColor="@android:color/white"
             android:textSize="16dp"/>
@@ -39,30 +38,18 @@
             android:layout_marginRight="10dp"
             android:padding="8dp"
             android:singleLine="true"
-            android:text="获取密码"
             android:textColor="@android:color/white"
             android:textSize="15dp"/>
 
     </android.support.v7.widget.Toolbar>
 
-
     <TextView
-        android:id="@+id/textPasswordID"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:textSize="20dp"
         android:gravity="center"
-        android:padding="15dp"
-        android:text="注册前先点击右上角“获取密码”取到声纹密码，在进行注册"/>
+        android:textColor="@color/colorPrimary"
+        android:text="欢迎使用"/>
 
-    <ImageButton
-        android:id="@+id/btuCommit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/btu_state_bg"/>
 
 </LinearLayout>

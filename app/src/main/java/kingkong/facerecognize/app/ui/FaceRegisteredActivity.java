@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class FaceRegisteredActivity extends AppCompatActivity{
 
     private CameraView cameraViewID;
 
-    private TextView btuCommit;
+    private ImageView btuCommit;
 
     private Toolbar toolbarID;
 

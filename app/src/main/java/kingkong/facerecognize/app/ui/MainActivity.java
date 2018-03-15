@@ -1,5 +1,6 @@
 package kingkong.facerecognize.app.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,9 +9,12 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.iflytek.cloud.ErrorCode;
@@ -47,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText loginNameID;
 
+    private LinearLayout layoutViewID;
+
     //采用身份识别接口进行在线人脸识别
     private IdentityVerifier mIdVerifier;
 
@@ -56,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
 
         loginNameID = findViewById(R.id.loginNameID);
         btuNextID = findViewById(R.id.btuNextID);
@@ -64,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         btuLoginID = findViewById(R.id.btuLoginID);
         btuRegFaceID = findViewById(R.id.btuRegFaceID);
         btuVeID = findViewById(R.id.btuVeID);
+        layoutViewID = findViewById(R.id.layoutViewID);
 
         mIdVerifier = IdentityVerifier.createVerifier(MainActivity.this, new InitListener() {
             @Override
@@ -96,6 +103,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        layoutViewID.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                closeInput();
+                return false;
+            }
+        });
+
         //查询按钮
         btuNextID.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.putExtra("login_name",loginNameID.getText().toString());
                 startActivity(intent);
             }
         });
@@ -145,8 +161,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //关闭输入法
+    public void closeInput() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null && this.getCurrentFocus() != null) {
+            inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
     //查询&删除人脸模型 flag =true 删除 否则 查询
     private void getFaceModelCommand(final boolean flag) {
+
+        closeInput();
 
         String mAuthid = loginNameID.getText().toString();
 

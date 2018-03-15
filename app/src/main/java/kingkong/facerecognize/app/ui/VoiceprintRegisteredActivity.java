@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +40,7 @@ import kingkong.facerecognize.app.entity.VoiceprintPasswordInfo;
  */
 public class VoiceprintRegisteredActivity extends Activity implements View.OnTouchListener{
 
-    private Button btuCommit;
+    private ImageButton btuCommit;
     private TextView toolbar_subtitle,textPasswordID;
 
     private Toast mToast;

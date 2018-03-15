@@ -3,8 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:camerakit="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutViewID"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -24,7 +26,7 @@
             android:layout_gravity="center"
             android:ellipsize="end"
             android:lines="1"
-            android:text="欢迎页面"
+            android:text="登录"
             android:scrollHorizontally="true"
             android:textColor="@android:color/white"
             android:textSize="16dp"/>
@@ -43,7 +45,99 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/icon_logon_bg"/>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/loginNameID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:hint="请输入用户名"
+            android:singleLine="true"
+            android:background="@drawable/shape_corner_login_edit"
+            android:layout_margin="20dp"
+            android:textColor="#333333"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btuNextID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:background="@drawable/shape_corner_blue"
+        android:text="查询"/>
+
+    <Button
+        android:id="@+id/btuLoginID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:background="@drawable/shape_corner_blue"
+        android:text="去登录"/>
+
+    <Button
+        android:id="@+id/btuCleanID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:background="@drawable/shape_corner_blue"
+        android:text="清除数据模型"/>
+    <Button
+        android:id="@+id/btuRegFaceID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:background="@drawable/shape_corner_blue"
+        android:text="人脸识别注册"/>
+
+    <Button
+        android:id="@+id/btuVeID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:background="@drawable/shape_corner_blue"
+        android:visibility="gone"
+        android:text="声纹密码注册"/>
 
 </LinearLayout>
